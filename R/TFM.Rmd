@@ -1,0 +1,52 @@
+---
+title: "TFM"
+author: "Alessio Riccioli"
+date: "10/9/2018"
+output: word_document
+---
+
+```{r include=TRUE}
+rm(list=ls())
+DCO = read.csv("DCO.csv", header = FALSE)
+GRD = read.csv("GRD.csv", header = FALSE)
+patologia = read.csv("patologia.csv", header = FALSE)
+colnames(DCO) <- c("id","DCO", "Description")
+colnames(GRD) <- c("id","GRD", "Description")
+colnames(patologia) <- c("id","N_historia", "Gender", "Edad", "Fec_Serv", "S_ingreso", "S_alta", "GRD", "Severidad", "Version_Grd", "Cdm", "Peso_Grd", "DCO")
+```
+
+Los GRD, o Grupos Relacionados por el Diagn??stico, son una herramienta de gesti??n normalizadora,en la que mediante un programa inform??tico, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto M??nimo B??sico de Datos (CMBD), podemos clasificar a los pacientes en grupos cl??nicamente similares y con parecido consumo de recursos sanitarios.
+CDM significa Categor??a diagn??stica mayor.
+Los GRD son un sistema de clasificaci??n de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casu??stica de un hospital, el case mix hospitalario. Son muy ??tiles en la gesti??n y financiaci??n de hospitales. Los GRD es un sistema de clasificaci??n de pacientes que clasifica a los pacientes hospitalarios
+en grupos homog??neos en cuanto al consumo de recursos.
+Las CDM (o grandes cap??tulos en que se agrupan los GRD) se suelen ajustar a los grandes aparatos o sistemas corporales. Son las 26 siguientes:
+-PreCDM. Contiene una serie de GRD especiales.
+-CDM 1. Enfermedades y trastornos del sistema nervioso.
+-CDM 2. Enfermedades y trastornos del ojo.
+-CDM 3. Enfermedades y trastornos del o??do, nariz y boca.
+-CDM 4. Enfermedades y trastornos del aparato respiratorio.
+-CDM 5. Enfermedades y trastornos del aparato circulatorio.
+-CDM 6. Enfermedades y trastornos del aparato digestivo.
+-CDM 7. Enfermedades y trastornos del higado, sistema biliar y p??ncreas.
+-CDM 8. Enfermedades y trastornos del sistema musculoesquel??tico y tejido conectivo.
+-CDM 9. Enfermedades y trastornos de la piel, del tejido subcut??neo y de la mama.
+-CDM 10. Enfermedades y trastornos endocrinos, nutricionales y metab??licos.
+-CDM 11. Enfermedades y trastornos del ri????n y v??as urinarias.
+-CDM 12. Enfermedades y trastornos del aparato reproductor masculino.
+-CDM 13. Enfermedades y trastornos del aparato reproductor feminino.
+-CDM 14. Embarazo, parto y puerperio.
+-CDM 15. Reci??n nacidos y cuadros del periodo neonatal.
+-CDM 16. Enfermedades y trastornos de sangre, sistema hematopoy??tico e inmunitario.
+-CDM 17. Enfermedades y trastornos mieloproliferativos y neoplasias poco diferenciadas.
+-CDM 18. Enfermedades infecciosas y parasitarias
+-CDM 19. Enfermedades o trastornos mentales.
+-CDM 20. Consumo alcohol/drogas y trastornos org??nicos mentales inducidos por drogas.
+-CDM 21. Heridas, envenenamientos y efectos t??xicos de las drogas.
+-CDM 22. Quemaduras.
+-CDM 23. Factores que influyen en el estado de salud y otros contactos con servicios sanitarios.
+-CDM 24. Infecciones por el Virus de la Inmunodeficiencia Humana.
+-CDM 25. Politraumatismos importantes.
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
