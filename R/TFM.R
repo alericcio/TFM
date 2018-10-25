@@ -14,3 +14,8 @@ barplot(table(patologia$Edad)) # interessante grafico che mostra la distrubuzion
 summary(patologia)
 
 hist(patologia$Edad, color = 'tomato', probability = TRUE)
+
+# questa è una prova per vedere come funziona se cambio un file in R.
+
+
+
