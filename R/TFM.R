@@ -8,14 +8,13 @@ colnames(GRD) <- c("id","GRD", "Description")
 colnames(patologia) <- c("id","N_historia", "Gender", "Edad", "Fec_Serv", "S_ingreso", "S_alta", "GRD", "Severidad", "Version_Grd", "Cdm", "Peso_Grd", "DCO")
 colnames(servicios) <- c("id","serv", "description")
 
-summary(patologia) # mostra la statistica basica descrittiva generale della tabella patologia
+summary(patologia)
 dim(DCO)
 dim(GRD)
 dim(patologia)
 dim(servicios)
 
-barplot(table(patologia$Edad)) # interessante grafico che mostra la distrubuzione degli ingressi all'ospedale in base all'et?? delle persone
-summary(patologia)
+barplot(table(patologia$Edad)) # gráfico que muestra la distribución de los ingresos según la edad
 
 hist(patologia$Edad, probability = TRUE)
 
@@ -25,7 +24,7 @@ nrows = nrow(patologia)
 y <- matrix(nrow = nrows, ncol = 1)
 for (i in 1:nrows){
   if ( patologia[i, 6] == patologia[i, 7] ) {
-    y[i,]<- "iguale"
+    y[i,]<- "igual"
   } else {
     y[i,]<- "distinto"
   }
