@@ -34,6 +34,7 @@ summary(y) # Hay 6338 iguales y 37813 casos distintos
 
 primermerge <- merge(patologia, GRD, by = "GRD", all = TRUE)
 segundomerge <- merge(primermerge, DCO, by = "DCO", all = TRUE)
-subsetsegundomerge <- subset(segundomerge, select = -c(id.x, N_historia, S_ingreso, S_alta, Version_Grd, Cdm, Peso_Grd, id.y, id))
-colnames(subsetsegundomerge)[colnames(subsetsegundomerge)=="Description.x"] <- "Descripcion_GRD"
-colnames(subsetsegundomerge)[colnames(subsetsegundomerge)=="Description.y"] <- "Descripcion_DCO"
+patologia_limpio <- subset(segundomerge, select = -c(N_historia, S_ingreso, S_alta, Version_Grd, Cdm, Peso_Grd, id.y, id))
+colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.x"] <- "Descripcion_GRD"
+colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.y"] <- "Descripcion_DCO"
+colnames(patologia_limpio)[colnames(patologia_limpio)=="id.x"] <- "id"
