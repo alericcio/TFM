@@ -59,10 +59,6 @@ dim(GRD)
 dim(patologia)
 dim(servicios)
 
-barplot(table(patologia$Edad)) # gráfico que muestra la distribución de los ingresos según la edad
-
-hist(patologia$Edad, probability = TRUE)
-
 # Número de filas en la tabla patologia
 nrows = nrow(patologia)
 # Identifo diferencias entre S_ingreso y S_alta
@@ -83,3 +79,29 @@ colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.x"] <- "Desc
 colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.y"] <- "Descripcion_DCO"
 colnames(patologia_limpio)[colnames(patologia_limpio)=="id.x"] <- "id"
 ```
+
+# Análisis de Frecuencias de las enfermedades
+
+```{r include=TRUE}
+
+GRD_min = min(patologia_limpio$GRD)
+GRD_max = max(patologia_limpio$GRD)
+
+frecuencias <- as.data.frame(table(patologia_limpio$GRD))
+colnames(frecuencias) <- c("GRD","Frecuencia")
+hist(frecuencias$Frecuencia, xlim=c(0,1000), xlab = "Frecuencias", ylab = "Repeticiones")
+table(frecuencias$Frecuencia >= 200)
+porcentaje <- (61*100)/(nrow(frecuencias))
+
+```
+
+Los GRD que tienen frecuencia entre 0 y 200 se repiten 250 veces. Estamos interesados en analizar los GRD que se repiten más de 200 veces, que son 61 y reflejan el 20.27% de las enfermedades presentes en este estudio.
+
+```{r include=TRUE}
+plot(frecuencias$GRD, frecuencias$Frecuencia, xlab ="GRD", ylab ="Frecuencia", main ="Grafico de frecuencias")
+
+frecuentes <- frecuencias[ which(frecuencias$Frecuencia >= 200), ]
+frecuentes
+
+```
+
