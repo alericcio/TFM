@@ -19,7 +19,7 @@ colnames(patologia) <- c("id","N_historia", "Gender", "Edad", "Fec_Serv", "S_ing
 colnames(servicios) <- c("id","serv", "description")
 
 ```
-
+_questa è una prova_
 Los GRD, o Grupos Relacionados por el Diagnóstico, son una herramienta de gestión normalizadora,en la que mediante un programa inform??tico, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto M??nimo B??sico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios.
 CDM significa Categoría diagnóstica mayor.
 Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casu??stica de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD es un sistema de clasificación de pacientes que clasifica a los pacientes hospitalarios
