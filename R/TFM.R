@@ -14,9 +14,6 @@ dim(GRD)
 dim(patologia)
 dim(servicios)
 
-barplot(table(patologia$Edad)) # gráfico que muestra la distribución de los ingresos según la edad
-
-hist(patologia$Edad, probability = TRUE)
 
 # Número de filas en la tabla patologia
 nrows = nrow(patologia)
@@ -37,3 +34,19 @@ patologia_limpio <- subset(segundomerge, select = -c(N_historia, S_ingreso, S_al
 colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.x"] <- "Descripcion_GRD"
 colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.y"] <- "Descripcion_DCO"
 colnames(patologia_limpio)[colnames(patologia_limpio)=="id.x"] <- "id"
+
+GRD_min = min(patologia_limpio$GRD)
+GRD_max = max(patologia_limpio$GRD)
+
+frecuencias <- as.data.frame(table(patologia_limpio$GRD))
+colnames(frecuencias) <- c("GRD","Frecuencia")
+
+hist(frecuencias$Frecuencia, xlim=c(0,1000), xlab = "Frecuencias", ylab = "quante volte si verificano")
+# los códigos que tienen frecuencia entre 0 y 200 se repiten 250 veces.
+# a mi interesan los códigos que se repiten más de 200 veces, que son 61 y reflejan el 20.27% de las enfermedades.
+plot(frecuencias$GRD, frecuencias$Frecuencia, xlab ="Código", ylab ="Frecuencia", main ="Gráfico de frecuencias")
+
+frecuentes <- frecuencias[ which(frecuencias$Frecuencia >= 200), ]
+
+
+
