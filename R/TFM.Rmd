@@ -1,41 +1,44 @@
 ---
+lang: es-ES
 title: "TFM"
 author: "Alessio Riccioli"
 date: "10/9/2018"
 output:
-  html_document: default
+  html_document: 
+    toc: yes
   word_document: default
 ---
+# Abstract
 
-```{r include=TRUE}
-rm(list=ls())
-DCO = read.csv("DCO.csv", header = FALSE)
-GRD = read.csv("GRD.csv", header = FALSE)
-patologia = read.csv("patologia.csv", header = FALSE)
-servicios = read.csv("Servicios.csv", header = FALSE)
-colnames(DCO) <- c("id","DCO", "Description")
-colnames(GRD) <- c("id","GRD", "Description")
-colnames(patologia) <- c("id","N_historia", "Gender", "Edad", "Fec_Serv", "S_ingreso", "S_alta", "GRD", "Severidad", "Version_Grd", "Cdm", "Peso_Grd", "DCO")
-colnames(servicios) <- c("id","serv", "description")
+<div style="text-align: justify"> 
+Este estudio se refiere a una análisis, propuesta para el Hospital Clínico San Carlos de Madrid, sobre la posibilidad de encontrar patrones de edad, sexo, periodo temporal entre pacientes del citado hospital. Para este trabajo se utilizan códigos como GRD, CDM y DCO que agrupan e identifican diferentes tipos de enfermedades, transporte, síntomas, intoxicaciones, efectos adversos de los medicamentos y cualquier otra razón por la que el paciente debe presentarse en la consulta. 
+</div>
 
-```
-<div style="text-align: justify"> Los GRD, o Grupos Relacionados por el Diagnóstico, son una herramienta de gestión normalizadora,en la que mediante un programa inform??tico, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto M??nimo B??sico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios.
-CDM significa Categoría diagnóstica mayor.
-Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casu??stica de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD es un sistema de clasificación de pacientes que clasifica a los pacientes hospitalarios
-en grupos homogéneos en cuanto al consumo de recursos.
-Las CDM (o grandes capítulos en que se agrupan los GRD) se suelen ajustar a los grandes aparatos o sistemas corporales. Son las 26 siguientes: </div>
+# Introducción
 
-* PreCDM. Contiene una serie de GRD especiales.
+<div style="text-align: justify">
+En el ambiente hospitalario, los códigos de diagnóstico se utilizan como una herramienta para agrupar e identificar enfermedades, trastornos, síntomas, envenenamientos, efectos adversos de drogas y productos químicos, lesiones y otras razones para el encuentro con el paciente. La codificación diagnóstica es la traducción de descripciones escritas de enfermedades, dolencias y lesiones en códigos de una clasificación particular. En la clasificación médica, los códigos de diagnóstico se utilizan como parte del proceso de codificación clínica junto con los códigos de intervención. Tanto los códigos de diagnóstico como los de intervención son asignados por un profesional de la salud capacitado en clasificación médica, como un codificador clínico o un administrador de información de salud. En este estudio se utilizan sólo los códigos de diagnóstico.
+Se han implementado varios sistemas de clasificación de diagnósticos con diversos grados de éxito en todo el mundo. Las diversas clasificaciones se centran en un tipo particular de encuentro con el paciente, como emergencia, hospitalización, consulta externa, salud mental y atención quirúrgica. La  International Statistical Classification of Diseases and Related Health Problems (ICD) es uno de los sistemas de clasificación más utilizados para la codificación de diagnósticos, ya que permite la comparabilidad y el uso de datos de mortalidad y morbilidad. De ahora en adelante nos referiremos a los ICD como DCO.
+
+A medida que surgen los conocimientos sobre la salud y los avances médicos, los códigos de diagnóstico se revisan y actualizan para que coincidan con los conocimientos actuales más actualizados en el campo de la salud. Los códigos pueden revisarse con bastante frecuencia a medida que se adquieren nuevos conocimientos.
+
+Los CDO son agrupados en GRD, o Grupos Relacionados por el Diagnóstico. Estos son una herramienta de gestión normalizadora,en la que mediante un programa informático, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto Mínimo Básico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios. CDM significa Categoría diagnóstica mayor.
+Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casuística de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD es un sistema de clasificación de pacientes que clasifica a los pacientes hospitalarios en grupos homogéneos en cuanto al consumo de recursos.
+
+Los GRD finalmente vienen a sus veces agrupados mediante los 26 CDM, o Categoría Diagnóstica Mayor. Las CDM se suelen ajustar a los grandes aparatos o sistemas corporales. Son las 26 siguientes: 
+</div>
+
+* PreCDM (o CDM 0). Contiene una serie de GRD especiales.
 * CDM 1. Enfermedades y trastornos del sistema nervioso.
 * CDM 2. Enfermedades y trastornos del ojo.
 * CDM 3. Enfermedades y trastornos del oído, nariz y boca.
 * CDM 4. Enfermedades y trastornos del aparato respiratorio.
 * CDM 5. Enfermedades y trastornos del aparato circulatorio.
 * CDM 6. Enfermedades y trastornos del aparato digestivo.
-* CDM 7. Enfermedades y trastornos del higado, sistema biliar y p??ncreas.
+* CDM 7. Enfermedades y trastornos del higado, sistema biliar y páncreas.
 * CDM 8. Enfermedades y trastornos del sistema musculoesquelético y tejido conectivo.
 * CDM 9. Enfermedades y trastornos de la piel, del tejido subcutáneo y de la mama.
-* CDM 10. Enfermedades y trastornos endocrinos, nutricionales y metab??licos.
+* CDM 10. Enfermedades y trastornos endocrinos, nutricionales y metabólicos.
 * CDM 11. Enfermedades y trastornos del riñón y vías urinarias.
 * CDM 12. Enfermedades y trastornos del aparato reproductor masculino.
 * CDM 13. Enfermedades y trastornos del aparato reproductor feminino.
@@ -52,57 +55,74 @@ Las CDM (o grandes capítulos en que se agrupan los GRD) se suelen ajustar a los
 * CDM 24. Infecciones por el Virus de la Inmunodeficiencia Humana.
 * CDM 25. Politraumatismos importantes.
 
+# Recopilación y preparación de datos
+
 ```{r include=TRUE}
-summary(patologia)
+rm(list=ls())
+DCO = read.csv("DCO.csv", header = FALSE)
+GRD = read.csv("GRD.csv", header = FALSE)
+patologia = read.csv("patologia.csv", header = FALSE)
+servicios = read.csv("Servicios.csv", header = FALSE)
+colnames(DCO) <- c("id","DCO", "Description")
+colnames(GRD) <- c("id","GRD", "Description")
+colnames(patologia) <- c("id","N_historia", "Gender", "Edad", "Fec_Serv", "S_ingreso", "S_alta", "GRD", "Severidad", "Version_Grd", "Cdm", "Peso_Grd", "DCO")
+colnames(servicios) <- c("id", "serv", "description")
 dim(DCO)
 dim(GRD)
 dim(patologia)
 dim(servicios)
 
-# Número de filas en la tabla patologia
-nrows = nrow(patologia)
-# Identifo diferencias entre S_ingreso y S_alta
-y <- matrix(nrow = nrows, ncol = 1)
-for (i in 1:nrows){
-  if ( patologia[i, 6] == patologia[i, 7] ) {
-    y[i,]<- "igual"
-  } else {
-    y[i,]<- "distinto"
-  }
-}
-summary(y) # Hay 6338 iguales y 37813 casos distintos
-
+# Join entre los dataframes para trabajar con una sola tabla.
 primermerge <- merge(patologia, GRD, by = "GRD", all = TRUE)
 segundomerge <- merge(primermerge, DCO, by = "DCO", all = TRUE)
-patologia_limpio <- subset(segundomerge, select = -c(N_historia, S_ingreso, S_alta, Version_Grd, Cdm, Peso_Grd, id.y, id))
+patologia_limpio <- subset(segundomerge, select = -c(id.x, N_historia, S_ingreso, S_alta, Version_Grd, Peso_Grd, id.y, id))
 colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.x"] <- "Descripcion_GRD"
 colnames(patologia_limpio)[colnames(patologia_limpio)=="Description.y"] <- "Descripcion_DCO"
-colnames(patologia_limpio)[colnames(patologia_limpio)=="id.x"] <- "id"
+patologia_limpio[, 'DCO'] <- as.factor(patologia_limpio[, 'DCO'])
+patologia_limpio[, 'GRD'] <- as.factor(patologia_limpio[, 'GRD'])
+patologia_limpio[, 'Fec_Serv'] <- as.Date(patologia_limpio[, 'Fec_Serv'])
+patologia_limpio[, 'Severidad'] <- as.factor(patologia_limpio[, 'Severidad'])
+patologia_limpio[, 'Descripcion_GRD'] <- as.character(patologia_limpio[, 'Descripcion_GRD'])
+patologia_limpio[, 'Descripcion_DCO'] <- as.character(patologia_limpio[, 'Descripcion_DCO'])
+patologia_limpio[, 'Descripcion_DCO'] <- as.character(patologia_limpio[, 'Descripcion_DCO'])
+patologia_limpio[, 'Cdm'] <- as.factor(patologia_limpio[, 'Cdm'])
+
+str(patologia_limpio)  # Tipo de variables
+summary(patologia_limpio) # Resumen de las variables
 ```
+
+Se han juntado las diferentes tablas en *patologia_limpio* para que el análisis resulte más claro.
 
 # Análisis de Frecuencias de las enfermedades
 
 ```{r include=TRUE}
 
-GRD_min = min(patologia_limpio$GRD)
-GRD_max = max(patologia_limpio$GRD)
-
-frecuencias <- as.data.frame(table(patologia_limpio$GRD))
+frecuencias <- as.data.frame(table(patologia_limpio[, 'GRD']))
 colnames(frecuencias) <- c("GRD","Frecuencia")
-hist(frecuencias$Frecuencia, xlim=c(0,1000), xlab = "Frecuencias", ylab = "Repeticiones")
-table(frecuencias$Frecuencia >= 200)
+hist(frecuencias[, 'Frecuencia'], xlim=c(0,1000), xlab = "Frecuencias", ylab = "Repeticiones")
+table(frecuencias[, 'Frecuencia'] >= 200) # Saco sólo los GRD que se repiten más de 200 veces.
 porcentaje <- (61*100)/(nrow(frecuencias))
-porcentaje
+porcentaje 
 
 ```
-
+<div style="text-align: justify"> 
 Los GRD que tienen frecuencia entre 0 y 200 se repiten 250 veces. Estamos interesados en analizar los GRD que se repiten más de 200 veces, que son 61 y reflejan el 20.27% de las enfermedades presentes en este estudio.
+</div>
 
 ```{r include=TRUE}
-plot(frecuencias$GRD, frecuencias$Frecuencia, xlab ="GRD", ylab ="Frecuencia", main ="Grafico de frecuencias")
+plot(frecuencias[, 'GRD'], frecuencias[, 'Frecuencia'], xlab ="GRD", ylab ="Frecuencia", main ="Grafico de frecuencias")
 
-frecuentes <- frecuencias[ which(frecuencias$Frecuencia >= 200), ]
+frecuentes <- frecuencias[ which(frecuencias[, 'Frecuencia'] >= 200), ]
 frecuentes
 
+(sum(frecuentes[, 'Frecuencia'])*100)/nrow(patologia_limpio)
+
 ```
+<div style="text-align: justify"> 
+Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD refleja el 80% de los pacientes presentes en este estudio.
+</div>
+
+
+
+
 
