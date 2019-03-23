@@ -17,13 +17,13 @@ output:
 # Abstract
 
 <div style="text-align: justify"> 
-Este estudio se refiere a un análisis, propuesto por el Hospital Clínico San Carlos de Madrid, sobre la posibilidad de encontrar patrones de edad, sexo, periodo temporal entre pacientes del citado hospital. Para este trabajo se utilizan códigos como GRD, CDM y DCO que agrupan e identifican diferentes tipos de enfermedades, transporte, síntomas, intoxicaciones, efectos adversos de los medicamentos y cualquier otra razón por la que el paciente debe presentarse en la consulta. 
+Este estudio se refiere a un análisis, propuesto por el Hospital Clínico San Carlos de Madrid, sobre la posibilidad de encontrar patrones de edad, género, periodo temporal entre pacientes ingresados en la Urgencia del citado hospital. Para este trabajo se han utilizado los códigos: GRD, CDM y DCO que agrupan e identifican diferentes tipos de enfermedades, transporte, síntomas, intoxicaciones, efectos adversos de los medicamentos y cualquier otra razón por la que el paciente debe presentarse en la consulta.
 </div>
 
 # Introducción
 
 <div style="text-align: justify">
-En el ambiente hospitalario, los códigos de diagnóstico se utilizan como una herramienta para agrupar e identificar enfermedades, trastornos, síntomas, envenenamientos, efectos adversos de drogas y productos químicos, lesiones y otras razones para el encuentro con el paciente. La codificación diagnóstica es la traducción de descripciones escritas de enfermedades, dolencias y lesiones en códigos de una clasificación particular. En la clasificación médica, los códigos de diagnóstico se utilizan como parte del proceso de codificación clínica junto con los códigos de intervención. Tanto los códigos de diagnóstico como los de intervención son asignados por un profesional de la salud capacitado en clasificación médica, como un codificador clínico o un administrador de información de salud. En este estudio se utilizan sólo los códigos de diagnóstico.
+En el ambiente hospitalario, los códigos de diagnóstico se utilizan como una herramienta para agrupar e identificar enfermedades, trastornos, síntomas, envenenamientos, efectos adversos de drogas y productos químicos, lesiones y otras razones para el encuentro con el paciente. La codificación diagnóstica es la traducción de descripciones escritas de enfermedades, dolencias y lesiones en códigos de una clasificación particular. En la clasificación médica, los códigos de diagnóstico se utilizan como parte del proceso de codificación clínica junto con los códigos de intervención. Tanto los códigos de diagnóstico como los de intervención son asignados por un profesional de la salud capacitado en clasificación médica, como un codificador clínico o un administrador de información de salud. En este estudio se han utilizado sólo los códigos de diagnóstico.
 Se han implementado varios sistemas de clasificación de diagnósticos con diversos grados de éxito en todo el mundo. Las diversas clasificaciones se centran en un tipo particular de encuentro con el paciente, como emergencia, hospitalización, consulta externa, salud mental y atención quirúrgica. La  International Statistical Classification of Diseases and Related Health Problems (ICD) es uno de los sistemas de clasificación más utilizados para la codificación de diagnósticos, ya que permite la comparabilidad y el uso de datos de mortalidad y morbilidad. De ahora en adelante nos referiremos a los ICD como DCO.
 
 A medida que surgen los conocimientos sobre la salud y los avances médicos, los códigos de diagnóstico se revisan y actualizan para que coincidan con los conocimientos actuales más actualizados en el campo de la salud. Los códigos pueden revisarse con bastante frecuencia a medida que se adquieren nuevos conocimientos.
@@ -157,9 +157,9 @@ axis(side = 4, at = c(0, px), labels = paste(c(0, round(frecuencias$cum_freq * 1
      las = 1, col.axis = "grey62", col = "cyan4", cex.axis = 0.8, col.axis = "cyan4")
 
 ## restoring default paramenter
-par(def_par) 
+#par(def_par) 
 
-frecuentes <- frecuencias[1:80, ]
+frecuentes <- frecuencias[1:81, ]
 ```
 <div style="text-align: justify"> 
 Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD refleja el 80% de los pacientes presentes en este estudio. Se ha creado el data.frame "frecuentes" en donde se almacenan los GRD que utilizaremos en este estudio.
