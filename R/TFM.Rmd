@@ -170,6 +170,7 @@ Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD ref
 
 diag_frecuentes <- merge(frecuentes, patologia_limpio, by = "GRD", all = FALSE) 
 dim(diag_frecuentes) # los pacientes analizados son 35285
+head(diag_frecuentes)
 
 ```
 

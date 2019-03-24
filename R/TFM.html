@@ -330,6 +330,28 @@ frecuentes &lt;- frecuencias[1:81, ]</code></pre>
 diag_frecuentes &lt;- merge(frecuentes, patologia_limpio, by = &quot;GRD&quot;, all = FALSE) 
 dim(diag_frecuentes) # los pacientes analizados son 35285</code></pre>
 <pre><code>## [1] 35285    13</code></pre>
+<pre class="r"><code>head(diag_frecuentes)</code></pre>
+<pre><code>##   GRD Frecuencia cumsum  freq cum_freq    DCO Gender Edad   Fec_Serv
+## 1 113        466  20573 0.011    0.468 J03.90      F   39 2016-04-26
+## 2 113        466  20573 0.011    0.468 J09.X2      F   46 2016-02-20
+## 3 113        466  20573 0.011    0.468  J06.9      F   76 2016-12-16
+## 4 113        466  20573 0.011    0.468 J09.X2      F   59 2016-12-27
+## 5 113        466  20573 0.011    0.468  J06.9      F   72 2017-01-04
+## 6 113        466  20573 0.011    0.468 J09.X2      M   88 2017-11-02
+##   Severidad Cdm                                     Descripcion_GRD
+## 1         1   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+## 2         3   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+## 3         2   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+## 4         3   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+## 5         1   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+## 6         3   3 INFECCIONES DE V\303\215AS RESPIRATORIAS SUPERIORES
+##                                                                                 Descripcion_DCO
+## 1                                                            Amigdalitis aguda, no especificada
+## 2 Gripe debida a virus de la nueva gripe A identificado con otras manifestaciones respiratorias
+## 3         Infecci\303\263n respiratoria aguda del tracto respiratorio superior, no especificada
+## 4 Gripe debida a virus de la nueva gripe A identificado con otras manifestaciones respiratorias
+## 5         Infecci\303\263n respiratoria aguda del tracto respiratorio superior, no especificada
+## 6 Gripe debida a virus de la nueva gripe A identificado con otras manifestaciones respiratorias</code></pre>
 </div>
 
 
