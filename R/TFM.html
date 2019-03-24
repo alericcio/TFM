@@ -139,15 +139,15 @@ $(document).ready(function () {
 <div id="abstract" class="section level1">
 <h1>Abstract</h1>
 <div style="text-align: justify">
-<p>Este estudio se refiere a un análisis, propuesto por el Hospital Clínico San Carlos de Madrid, sobre la posibilidad de encontrar patrones de edad, sexo, periodo temporal entre pacientes del citado hospital. Para este trabajo se utilizan códigos como GRD, CDM y DCO que agrupan e identifican diferentes tipos de enfermedades, transporte, síntomas, intoxicaciones, efectos adversos de los medicamentos y cualquier otra razón por la que el paciente debe presentarse en la consulta.</p>
+<p>This study refers to an analysis, proposed by the Hospital Clínico San Carlos in Madrid, of the possibility of finding patterns of age, gender, and time period among patients admitted to the Emergency Department of the aforementioned hospital. For this work the following codes have been used: GRD, CDM and DCO that group and identify different types of diseases, transport, symptoms, intoxications, adverse effects of medications and any other reason why the patient should present at the consultation.</p>
 </div>
 </div>
 <div id="introduccion" class="section level1">
 <h1>Introducción</h1>
 <div style="text-align: justify">
-<p>En el ambiente hospitalario, los códigos de diagnóstico se utilizan como una herramienta para agrupar e identificar enfermedades, trastornos, síntomas, envenenamientos, efectos adversos de drogas y productos químicos, lesiones y otras razones para el encuentro con el paciente. La codificación diagnóstica es la traducción de descripciones escritas de enfermedades, dolencias y lesiones en códigos de una clasificación particular. En la clasificación médica, los códigos de diagnóstico se utilizan como parte del proceso de codificación clínica junto con los códigos de intervención. Tanto los códigos de diagnóstico como los de intervención son asignados por un profesional de la salud capacitado en clasificación médica, como un codificador clínico o un administrador de información de salud. En este estudio se utilizan sólo los códigos de diagnóstico. Se han implementado varios sistemas de clasificación de diagnósticos con diversos grados de éxito en todo el mundo. Las diversas clasificaciones se centran en un tipo particular de encuentro con el paciente, como emergencia, hospitalización, consulta externa, salud mental y atención quirúrgica. La International Statistical Classification of Diseases and Related Health Problems (ICD) es uno de los sistemas de clasificación más utilizados para la codificación de diagnósticos, ya que permite la comparabilidad y el uso de datos de mortalidad y morbilidad. De ahora en adelante nos referiremos a los ICD como DCO.</p>
+<p>En el ambiente hospitalario, los códigos de diagnóstico se utilizan como una herramienta para agrupar e identificar enfermedades, trastornos, síntomas, envenenamientos, efectos adversos de drogas y productos químicos, lesiones y otras razones para el encuentro con el paciente. La codificación diagnóstica es la traducción de descripciones escritas de enfermedades, dolencias y lesiones en códigos de una clasificación particular. En la clasificación médica, los códigos de diagnóstico se utilizan como parte del proceso de codificación clínica junto con los códigos de intervención. Tanto los códigos de diagnóstico como los de intervención son asignados por un profesional de la salud capacitado en clasificación médica, como un codificador clínico o un administrador de información de salud. En este estudio se han utilizado sólo los códigos de diagnóstico. Se han implementado varios sistemas de clasificación de diagnósticos con diversos grados de éxito en todo el mundo. Las diversas clasificaciones se centran en un tipo particular de encuentro con el paciente, como emergencia, hospitalización, consulta externa, salud mental y atención quirúrgica. La International Statistical Classification of Diseases and Related Health Problems (ICD) es uno de los sistemas de clasificación más utilizados para la codificación de diagnósticos, ya que permite la comparabilidad y el uso de datos de mortalidad y morbilidad. De ahora en adelante nos referiremos a los ICD como DCO.</p>
 <p>A medida que surgen los conocimientos sobre la salud y los avances médicos, los códigos de diagnóstico se revisan y actualizan para que coincidan con los conocimientos actuales más actualizados en el campo de la salud. Los códigos pueden revisarse con bastante frecuencia a medida que se adquieren nuevos conocimientos.</p>
-<p>Los CDO son agrupados en GRD, o Grupos Relacionados por el Diagnóstico. Estos son una herramienta de gestión normalizadora,en la que mediante un programa informático, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto Mínimo Básico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios. CDM significa Categoría diagnóstica mayor. Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casuística de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD es un sistema de clasificación de pacientes que clasifica a los pacientes hospitalarios en grupos homogéneos en cuanto al consumo de recursos.</p>
+<p>Los DCO son agrupados en GRD, o Grupos Relacionados por el Diagnóstico. Estos son una herramienta de gestión normalizadora,en la que mediante un programa informático, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto Mínimo Básico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios. CDM significa Categoría diagnóstica mayor. Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casuística de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD son un sistema de clasificación que clasifica a los pacientes hospitalarios en grupos homogéneos en cuanto al consumo de recursos.</p>
 <p>Los GRD finalmente vienen a sus veces agrupados mediante los 26 CDM, o Categoría Diagnóstica Mayor. Las CDM se suelen ajustar a los grandes aparatos o sistemas corporales. Son las 26 siguientes:</p>
 </div>
 <ul>
@@ -181,6 +181,84 @@ $(document).ready(function () {
 </div>
 <div id="recopilacion-y-preparacion-de-datos" class="section level1">
 <h1>Recopilación y preparación de datos</h1>
+<pre class="r"><code>rm(list=ls())
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(magrittr)
+DCO = read.csv(&quot;DCO.csv&quot;, header = FALSE)
+GRD = read.csv(&quot;GRD.csv&quot;, header = FALSE)
+patologia = read.csv(&quot;patologia.csv&quot;, header = FALSE)
+servicios = read.csv(&quot;Servicios.csv&quot;, header = FALSE)
+colnames(DCO) &lt;- c(&quot;id&quot;,&quot;DCO&quot;, &quot;Description&quot;)
+colnames(GRD) &lt;- c(&quot;id&quot;,&quot;GRD&quot;, &quot;Description&quot;)
+colnames(patologia) &lt;- c(&quot;id&quot;,&quot;N_historia&quot;, &quot;Gender&quot;, &quot;Edad&quot;, &quot;Fec_Serv&quot;, &quot;S_ingreso&quot;, &quot;S_alta&quot;, &quot;GRD&quot;, &quot;Severidad&quot;, &quot;Version_Grd&quot;, &quot;Cdm&quot;, &quot;Peso_Grd&quot;, &quot;DCO&quot;)
+colnames(servicios) &lt;- c(&quot;id&quot;, &quot;serv&quot;, &quot;description&quot;)
+dim(DCO)</code></pre>
+<pre><code>## [1] 3760    3</code></pre>
+<pre class="r"><code>dim(GRD)</code></pre>
+<pre><code>## [1] 301   3</code></pre>
+<pre class="r"><code>dim(patologia)</code></pre>
+<pre><code>## [1] 44151    13</code></pre>
+<pre class="r"><code>dim(servicios)</code></pre>
+<pre><code>## [1] 35  3</code></pre>
+<pre class="r"><code># Join entre los dataframes para trabajar con una sola tabla.
+primermerge &lt;- merge(patologia, GRD, by = &quot;GRD&quot;, all = TRUE)
+segundomerge &lt;- merge(primermerge, DCO, by = &quot;DCO&quot;, all = TRUE)
+patologia_limpio &lt;- subset(segundomerge, select = -c(id.x, N_historia, S_ingreso, S_alta, Version_Grd, Peso_Grd, id.y, id))
+colnames(patologia_limpio)[colnames(patologia_limpio)==&quot;Description.x&quot;] &lt;- &quot;Descripcion_GRD&quot;
+colnames(patologia_limpio)[colnames(patologia_limpio)==&quot;Description.y&quot;] &lt;- &quot;Descripcion_DCO&quot;
+patologia_limpio[, 'DCO'] &lt;- as.factor(patologia_limpio[, 'DCO'])
+patologia_limpio[, 'GRD'] &lt;- as.factor(patologia_limpio[, 'GRD'])
+patologia_limpio[, 'Fec_Serv'] &lt;- as.Date(patologia_limpio[, 'Fec_Serv'])
+patologia_limpio[, 'Severidad'] &lt;- as.factor(patologia_limpio[, 'Severidad'])
+patologia_limpio[, 'Descripcion_GRD'] &lt;- as.character(patologia_limpio[, 'Descripcion_GRD'])
+patologia_limpio[, 'Descripcion_DCO'] &lt;- as.character(patologia_limpio[, 'Descripcion_DCO'])
+patologia_limpio[, 'Descripcion_DCO'] &lt;- as.character(patologia_limpio[, 'Descripcion_DCO'])
+patologia_limpio[, 'Cdm'] &lt;- as.factor(patologia_limpio[, 'Cdm'])
+
+str(patologia_limpio)  # Tipo de variables</code></pre>
+<pre><code>## 'data.frame':    44151 obs. of  9 variables:
+##  $ DCO            : Factor w/ 3760 levels &quot;A02.0&quot;,&quot;A02.1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ GRD            : Factor w/ 301 levels &quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;20&quot;,..: 111 111 111 111 111 111 111 111 111 111 ...
+##  $ Gender         : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 1 1 2 2 1 2 1 2 1 1 ...
+##  $ Edad           : int  35 36 77 35 22 23 72 59 79 51 ...
+##  $ Fec_Serv       : Date, format: &quot;2017-08-08&quot; &quot;2016-05-21&quot; ...
+##  $ Severidad      : Factor w/ 5 levels &quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,..: 4 2 3 2 3 2 2 2 3 4 ...
+##  $ Cdm            : Factor w/ 26 levels &quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,..: 7 7 7 7 7 7 7 7 7 7 ...
+##  $ Descripcion_GRD: chr  &quot;INFECCIONES BACTERIANAS MAYORES DE APARATO DIGESTIVO&quot; &quot;INFECCIONES BACTERIANAS MAYORES DE APARATO DIGESTIVO&quot; &quot;INFECCIONES BACTERIANAS MAYORES DE APARATO DIGESTIVO&quot; &quot;INFECCIONES BACTERIANAS MAYORES DE APARATO DIGESTIVO&quot; ...
+##  $ Descripcion_DCO: chr  &quot;Enteritis debida a Salmonella&quot; &quot;Enteritis debida a Salmonella&quot; &quot;Enteritis debida a Salmonella&quot; &quot;Enteritis debida a Salmonella&quot; ...</code></pre>
+<pre class="r"><code>summary(patologia_limpio) # Resumen de las variables</code></pre>
+<pre><code>##       DCO             GRD        Gender         Edad       
+##  I50.9  : 2004   560    : 2737   F:24027   Min.   :  0.00  
+##  N39.0  : 1513   194    : 2219   M:20124   1st Qu.: 44.00  
+##  J18.9  : 1502   139    : 1938             Median : 71.00  
+##  J22    : 1277   463    : 1801             Mean   : 63.26  
+##  O48.0  : 1153   144    : 1661             3rd Qu.: 84.00  
+##  O42.92 :  645   140    : 1304             Max.   :107.00  
+##  (Other):36057   (Other):32491                             
+##     Fec_Serv          Severidad      Cdm        Descripcion_GRD   
+##  Min.   :1984-10-16   0:    9   4      : 7541   Length:44151      
+##  1st Qu.:2016-06-04   1:13637   5      : 6961   Class :character  
+##  Median :2016-12-06   2:18138   6      : 5642   Mode  :character  
+##  Mean   :2016-12-10   3:10804   14     : 4282                     
+##  3rd Qu.:2017-06-12   4: 1563   11     : 3305                     
+##  Max.   :2017-12-31             1      : 3302                     
+##                                 (Other):13118                     
+##  Descripcion_DCO   
+##  Length:44151      
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## </code></pre>
 <p>Se han juntado las diferentes tablas en <em>patologia_limpio</em> para que el análisis resulte más claro.</p>
 </div>
 <div id="analisis-de-frecuencias-de-las-enfermedades" class="section level1">
@@ -243,10 +321,15 @@ axis(side = 4, at = c(0, px), labels = paste(c(0, round(frecuencias$cum_freq * 1
 <pre class="r"><code>## restoring default paramenter
 #par(def_par) 
 
-frecuentes &lt;- frecuencias[1:80, ]</code></pre>
+frecuentes &lt;- frecuencias[1:81, ]</code></pre>
 <div style="text-align: justify">
 <p>Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD refleja el 80% de los pacientes presentes en este estudio. Se ha creado el data.frame “frecuentes” en donde se almacenan los GRD que utilizaremos en este estudio.</p>
 </div>
+<pre class="r"><code># agrupo todos los pacientes que han tenido los GRD más frecuentes, mostrando el DCO.
+
+diag_frecuentes &lt;- merge(frecuentes, patologia_limpio, by = &quot;GRD&quot;, all = FALSE) 
+dim(diag_frecuentes) # los pacientes analizados son 35285</code></pre>
+<pre><code>## [1] 35285    13</code></pre>
 </div>
 
 

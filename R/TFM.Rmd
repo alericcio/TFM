@@ -63,7 +63,7 @@ Los GRD finalmente vienen a sus veces agrupados mediante los 26 CDM, o Categorí
 
 # Recopilación y preparación de datos
 
-```{r include=FALSE}
+```{r include=TRUE}
 rm(list=ls())
 library(dplyr)
 library(magrittr)
@@ -164,3 +164,12 @@ frecuentes <- frecuencias[1:81, ]
 <div style="text-align: justify"> 
 Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD refleja el 80% de los pacientes presentes en este estudio. Se ha creado el data.frame "frecuentes" en donde se almacenan los GRD que utilizaremos en este estudio.
 </div>
+
+```{r include=TRUE}
+# agrupo todos los pacientes que han tenido los GRD más frecuentes, mostrando el DCO.
+
+diag_frecuentes <- merge(frecuentes, patologia_limpio, by = "GRD", all = FALSE) 
+dim(diag_frecuentes) # los pacientes analizados son 35285
+
+```
+
