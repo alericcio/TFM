@@ -17,7 +17,7 @@ output:
 # Abstract
 
 <div style="text-align: justify"> 
-Este estudio se refiere a un análisis, propuesto por el Hospital Clínico San Carlos de Madrid, sobre la posibilidad de encontrar patrones de edad, género, periodo temporal entre pacientes ingresados en la Urgencia del citado hospital. Para este trabajo se han utilizado los códigos: GRD, CDM y DCO que agrupan e identifican diferentes tipos de enfermedades, transporte, síntomas, intoxicaciones, efectos adversos de los medicamentos y cualquier otra razón por la que el paciente debe presentarse en la consulta.
+This study refers to an analysis, proposed by the Hospital Clínico San Carlos in Madrid, of the possibility of finding patterns of age, gender, and time period among patients admitted to the Emergency Department of the aforementioned hospital. For this work the following codes have been used: GRD, CDM and DCO that group and identify different types of diseases, transport, symptoms, intoxications, adverse effects of medications and any other reason why the patient should present at the consultation.
 </div>
 
 # Introducción
@@ -28,8 +28,8 @@ Se han implementado varios sistemas de clasificación de diagnósticos con diver
 
 A medida que surgen los conocimientos sobre la salud y los avances médicos, los códigos de diagnóstico se revisan y actualizan para que coincidan con los conocimientos actuales más actualizados en el campo de la salud. Los códigos pueden revisarse con bastante frecuencia a medida que se adquieren nuevos conocimientos.
 
-Los CDO son agrupados en GRD, o Grupos Relacionados por el Diagnóstico. Estos son una herramienta de gestión normalizadora,en la que mediante un programa informático, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto Mínimo Básico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios. CDM significa Categoría diagnóstica mayor.
-Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casuística de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD es un sistema de clasificación de pacientes que clasifica a los pacientes hospitalarios en grupos homogéneos en cuanto al consumo de recursos.
+Los DCO son agrupados en GRD, o Grupos Relacionados por el Diagnóstico. Estos son una herramienta de gestión normalizadora,en la que mediante un programa informático, alimentado con los datos de los pacientes dados de alta hospitalaria el Conjunto Mínimo Básico de Datos (CMBD), podemos clasificar a los pacientes en grupos clínicamente similares y con parecido consumo de recursos sanitarios. CDM significa Categoría diagnóstica mayor.
+Los GRD son un sistema de clasificación de pacientes por sistema de ajustes de riesgos con base en el isoconsumo de recursos. Sirven para conocer la casuística de un hospital, el case mix hospitalario. Son muy útiles en la gestión y financiación de hospitales. Los GRD son un sistema de clasificación que clasifica a los pacientes hospitalarios en grupos homogéneos en cuanto al consumo de recursos.
 
 Los GRD finalmente vienen a sus veces agrupados mediante los 26 CDM, o Categoría Diagnóstica Mayor. Las CDM se suelen ajustar a los grandes aparatos o sistemas corporales. Son las 26 siguientes: 
 </div>
