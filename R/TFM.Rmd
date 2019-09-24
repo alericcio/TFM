@@ -107,7 +107,7 @@ Se han juntado las diferentes tablas en *patologia_limpio* para que el análisis
 
 frecuencias <- as.data.frame(table(patologia_limpio[, 'GRD']))
 colnames(frecuencias) <- c("GRD","Frecuencia")
-hist(frecuencias[, 'Frecuencia'], xlim=c(0,1000), xlab = "Frecuencias", ylab = "Repeticiones")
+hist(frecuencias[, 'Frecuencia'], xlim=c(0,1000), xlab = "Frecuencias", ylab = "Número de veces que se repiten")
 table(frecuencias[, 'Frecuencia'] >= 200) # Saco sólo los GRD que se repiten más de 200 veces.
 porcentaje <- (61*100)/(nrow(frecuencias))
 porcentaje 
