@@ -174,5 +174,25 @@ head(diag_frecuentes)
 
 ```
 
-Ciao questa è una prova.
+Los pacientes analizados son 35285. Los CDM son 18, 81 GRD y 2190 DCO. Creo tablas de frecuencias para cada variable cómo edad, género, periodo temporal.
 
+```{r include=TRUE}
+# Agrupo los valores y calculo la frecuencia absoluta
+tablaedad <- as.data.frame(table(edad = factor(cut(diag_frecuentes$Edad, breaks = c(0, 6, 12, 19, 27, 60, 108), labels = c("primera infancia 0-5", "infancia 6-11", "adolescencia 12-18","juventud 19-26", "adultez 27-59", "vejez 60 y mas"), right = FALSE))))
+
+
+#labels = c("primera infancia 0-5", "infancia", "adolesciencia","juventud", "adultez", "vejez") ,
+# Muestro la tabla de contingencia con la frecuencia absoluta de cada valor de la variable "edad"
+# La moda es el valor con mayor frecuencia absoluta
+
+tablaedad
+
+```
+```{r include=TRUE}
+#Muestro la tabla de frecuencias completa redondeando las frecuencias relativas a 3 decimales
+transform(tablaedad,
+          FreqAc = cumsum(Freq),
+          Rel = round(prop.table(Freq), 3),
+          RelAc = round(cumsum(prop.table(Freq)),3))
+
+```
