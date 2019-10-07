@@ -137,7 +137,8 @@ par(mar=c(5,5,4,5))
 ## Histograma, pc tendrá los valores del eje x
 pc = barplot(frecuencias$Frecuencia,
              width = 1, space = 0.2, border = NA, axes = F,
-             ylim = c(0, 1.05 * max(frecuencias$Frecuencia, na.rm = T)), 
+             ylim = c(0, 1.05 * max(frecuencias$Frecuencia, na.rm = T)),
+             xlab = "Códigos GRD",
              ylab = "Numero de pacientes" , cex.names = 0.7, 
              names.arg = frecuencias$GRD,
              main = "Grafico de Pareto")
@@ -166,7 +167,7 @@ Se ha adoptado la técnica del 80/20 (Pareto), por el cual el 20% de los GRD ref
 </div>
 
 ```{r include=TRUE}
-# agrupo todos los pacientes que han tenido los GRD más frecuentes, mostrando el DCO.
+# agrupo todos los pacientes que han tenido los GRD más frecuentes, mostrando también el DCO.
 
 diag_frecuentes <- merge(frecuentes, patologia_limpio, by = "GRD", all = FALSE) 
 dim(diag_frecuentes) # los pacientes analizados son 35285
@@ -174,7 +175,7 @@ head(diag_frecuentes)
 
 ```
 
-Los pacientes analizados son 35285. Los CDM son 18, 81 GRD y 2190 DCO. Creo tablas de frecuencias para cada variable cómo edad, género, periodo temporal.
+Los pacientes analizados son 35285. Los CDM son 18, 81 GRD y 2190 DCO. Creo tablas de frecuencias para las variables categóricas cómo edad, género, periodo temporal.
 
 ```{r include=TRUE}
 # Agrupo los valores y calculo la frecuencia absoluta
