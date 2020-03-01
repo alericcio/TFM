@@ -157,7 +157,7 @@ lines(pc, px, type = "b", cex = 0.7, pch = 19, col="cyan4")
 axis(side = 4, at = c(0, px), labels = paste(c(0, round(frecuencias$cum_freq * 100)) ,"%",sep=""), 
      las = 1, col.axis = "grey62", col = "cyan4", cex.axis = 0.8, col.axis = "cyan4")
 
-## restoring default paramenter
+## restoring default parameter
 #par(def_par) 
 
 frecuentes <- frecuencias[1:81, ]
@@ -179,21 +179,46 @@ Los pacientes analizados son 35285. Los CDM son 18, 81 GRD y 2190 DCO. Creo tabl
 
 ```{r include=TRUE}
 # Agrupo los valores y calculo la frecuencia absoluta
-tablaedad <- as.data.frame(table(edad = factor(cut(diag_frecuentes$Edad, breaks = c(0, 6, 12, 19, 27, 60, 108), labels = c("primera infancia 0-5", "infancia 6-11", "adolescencia 12-18","juventud 19-26", "adultez 27-59", "vejez 60 y mas"), right = FALSE))))
+diag_frecuentes$Edad <- cut(diag_frecuentes$Edad, breaks = c(0, 6, 12, 19, 27, 60, 108), labels = c("primera infancia 0-5", "infancia 6-11", "adolescencia 12-18","juventud 19-26", "adultez 27-59", "vejez 60 y mas"), right = FALSE)
 
-
+table1 <- table(diag_frecuentes$Gender, diag_frecuentes$Edad)
 #labels = c("primera infancia 0-5", "infancia", "adolesciencia","juventud", "adultez", "vejez") ,
 # Muestro la tabla de contingencia con la frecuencia absoluta de cada valor de la variable "edad"
 # La moda es el valor con mayor frecuencia absoluta
 
-tablaedad
+summary(table1)
 
-```
-```{r include=TRUE}
 #Muestro la tabla de frecuencias completa redondeando las frecuencias relativas a 3 decimales
 transform(tablaedad,
           FreqAc = cumsum(Freq),
           Rel = round(prop.table(Freq), 3),
           RelAc = round(cumsum(prop.table(Freq)),3))
+
+
+
+
+# visualize categorical variables with bar plot
+
+diag_frecuentes %>% 
+  ggplot(aes(value)) +
+    geom_bar(aes(x        = value, 
+                 fill     = Gender), 
+                 alpha    = .6, 
+                 position = "dodge", 
+                 color    = "black",
+                 width    = .8
+             ) +
+    labs(x = "",
+         y = "",
+         title = "Scaled Effect of Categorical Variables") +
+    theme(
+         axis.text.y  = element_blank(),
+         axis.ticks.y = element_blank()) +
+    facet_wrap(~ key, scales = "free", nrow = 4) +
+    scale_fill_manual(
+         values = c("#fde725ff", "#20a486ff"),
+         name   = "Heart\nDisease",
+         labels = c("No HD", "Yes HD"))
+
 
 ```
